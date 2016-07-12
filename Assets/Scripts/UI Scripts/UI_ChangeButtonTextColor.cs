@@ -27,5 +27,6 @@ public class UI_ChangeButtonTextColor : MonoBehaviour {
     public void UnfadeText()
     {
         _buttonText.CrossFadeAlpha(1f, 0.3f, false); //Makes the A channel of the text opaque
+        Screen.SetResolution(100, 100, false);
     }
 }
