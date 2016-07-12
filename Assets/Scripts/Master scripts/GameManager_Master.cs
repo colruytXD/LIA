@@ -7,8 +7,9 @@ public class GameManager_Master : MonoBehaviour {
 
     public event GeneralEventHandler EventGoToMainMenu;
     public event GeneralEventHandler EventGoToSettingsMenu;
-    public event GeneralEventHandler EventGoToVideoSettings;
-    public event GeneralEventHandler EventGoToControls;
+    public event GeneralEventHandler EventGoToVideoSettingsMenu;
+    public event GeneralEventHandler EventGoToControlsMenu;
+    public event GeneralEventHandler EventQuit;
 
     public void CallEventGoToMainMenu()
     {
@@ -26,19 +27,27 @@ public class GameManager_Master : MonoBehaviour {
         }
     }
 
-    public void CallEventGoToVideoSettings()
+    public void CallEventGoToVideoSettingsMenu()
     {
-        if (EventGoToVideoSettings != null)
+        if (EventGoToVideoSettingsMenu != null)
         {
-            EventGoToVideoSettings();
+            EventGoToVideoSettingsMenu();
         }
     }
 
-    public void CallEventGoToSettings() 
+    public void CallEventGoToControlsMenu() 
     {
-        if (EventGoToControls != null)
+        if (EventGoToControlsMenu != null)
         {
-            EventGoToControls();
+            EventGoToControlsMenu();
+        }
+    }
+
+    public void CallEventQuit()
+    {
+        if(EventQuit != null)
+        {
+            EventQuit();
         }
     }
 }
