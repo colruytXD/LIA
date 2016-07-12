@@ -3,23 +3,7 @@ using System.Collections;
 
 public class GameManager_Master : MonoBehaviour {
 
-	void OnEnable() 
-	{
-		SetInitialReferences();
-	}
+    public delegate void GeneralEventHandler();
 
-	void OnDisable() 
-	{
-
-	}
-	
-	void Update () 
-	{
-	
-	}
-
-	void SetInitialReferences() 
-	{
-
-	}
+    public event GeneralEventHandler Eventev;
 }
