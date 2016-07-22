@@ -36,6 +36,7 @@ public class SaveLoadTogglesVideoSettings : MonoBehaviour {
         binaryFormatter.Serialize(file, saveAblesCollection);
         file.Seek(0, SeekOrigin.Begin);
         file.Close();
+       
     }
 
     public void Load()
