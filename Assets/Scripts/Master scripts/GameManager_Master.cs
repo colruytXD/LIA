@@ -10,6 +10,8 @@ public class GameManager_Master : MonoBehaviour {
     public event GeneralEventHandler EventGoToVideoSettingsMenu;
     public event GeneralEventHandler EventGoToControlsMenu;
     public event GeneralEventHandler EventQuit;
+    public event GeneralEventHandler EventGoToMainGameScene;
+    public event GeneralEventHandler EventPlayerDie;
 
     public void CallEventGoToMainMenu()
     {
@@ -48,6 +50,22 @@ public class GameManager_Master : MonoBehaviour {
         if(EventQuit != null)
         {
             EventQuit();
+        }
+    }
+
+    public void CallEventGoToMainGameScene()
+    {
+        if(EventGoToMainGameScene != null)
+        {
+            EventGoToMainGameScene();
+        }
+    }
+
+    public void CallEventPlayerDie()
+    {
+        if(EventPlayerDie != null)
+        {
+            EventPlayerDie();
         }
     }
 }

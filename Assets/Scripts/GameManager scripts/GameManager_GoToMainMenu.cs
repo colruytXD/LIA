@@ -4,11 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager_GoToMainMenu : MonoBehaviour {
 
-    public GameObject pnlSettingsMenu;
-    public GameObject pnlMainMenu;
-    public GameObject pnlVideoSettingsMenu;
-    public GameObject pnlControlsMenu;
-
     private GameManager_Master gameManagerMasterScript;
 
     void OnEnable() 

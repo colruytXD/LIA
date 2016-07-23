@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameMech_Health : MonoBehaviour {
 
-    private GameMech_Master gameMechMaster;
+    private GameManager_Master gameManagerMaster;
 
     [SerializeField]
     private Image imgHealthBar;
@@ -20,14 +20,9 @@ public class GameMech_Health : MonoBehaviour {
 		SetInitialReferences();
 	}
 
-	void OnDisable() 
-	{
-
-	}
-
 	void SetInitialReferences() 
 	{
-        gameMechMaster = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameMech_Master>();
+        gameManagerMaster = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager_Master>();
 	}
 
     public void DeductCurrentHealth(float deductAmount)
@@ -39,7 +34,7 @@ public class GameMech_Health : MonoBehaviour {
         if (CurrentHealth < minHealth)
         {
             CurrentHealth = minHealth; //Makes sure CurrentHealth doesn't go under zero
-            gameMechMaster.CallEventKillPlayer(); //Kills Player
+            gameManagerMaster.CallEventPlayerDie(); //Kills Player
         }
     }
 
