@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameMech_Thirst : MonoBehaviour {
 
     private GameMech_Health gameMechHealth;
 
+    [SerializeField]
+    private Image imgThirstBar;
     [SerializeField]
     private float timeBetweenThirstDecrease;
     [SerializeField]
@@ -40,6 +43,8 @@ public class GameMech_Thirst : MonoBehaviour {
     {
         thirstAmount -= amount;
 
+        imgThirstBar.fillAmount = thirstAmount / 100;
+
         if (thirstAmount < minThirst) //this if statement makes sure the thirst doesnt go over max or min thirst (DEFAULT: 100, 0)
         {
             //Sets thirst to 0 and makes the player lose health via Health script
@@ -48,7 +53,15 @@ public class GameMech_Thirst : MonoBehaviour {
             thirstAmount = minThirst;
 
         }
-        else if (thirstAmount > maxThirst)
+    }
+
+    public void IncreaseThirst(float amount)
+    {
+        thirstAmount += amount;
+
+        imgThirstBar.fillAmount = thirstAmount / 100;
+
+        if(thirstAmount > maxThirst)
         {
             thirstAmount = maxThirst;
         }
