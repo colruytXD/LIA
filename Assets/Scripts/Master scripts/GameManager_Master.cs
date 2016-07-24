@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GameManager_Master : MonoBehaviour {
 
+    public bool isPaused = false;
+
     public delegate void GeneralEventHandler();
 
     public event GeneralEventHandler EventGoToMainMenu;
@@ -12,6 +14,8 @@ public class GameManager_Master : MonoBehaviour {
     public event GeneralEventHandler EventQuit;
     public event GeneralEventHandler EventGoToMainGameScene;
     public event GeneralEventHandler EventPlayerDie;
+    public event GeneralEventHandler EventTogglePause;
+    public event GeneralEventHandler EventSaveGame;
 
     public void CallEventGoToMainMenu()
     {
@@ -66,6 +70,23 @@ public class GameManager_Master : MonoBehaviour {
         if(EventPlayerDie != null)
         {
             EventPlayerDie();
+        }
+    }
+
+    public void CallEventTogglePause()
+    {
+        isPaused = !isPaused;
+        if (EventTogglePause != null)
+        {
+            EventTogglePause();
+        }
+    }
+
+    public void CallEventSaveGame()
+    {
+        if(EventSaveGame != null)
+        {
+            EventSaveGame();
         }
     }
 }

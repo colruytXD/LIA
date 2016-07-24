@@ -27,12 +27,8 @@ public class GameMech_Hunger : MonoBehaviour {
 	{
 		SetInitialReferences();
         StartCoroutine(HungerDecrease()); //Starts the hungerDecrease coroutine
-	}
-
-	void OnDisable() 
-	{
-
-	}
+  	}
+    
 
 	void SetInitialReferences() 
 	{
@@ -48,7 +44,6 @@ public class GameMech_Hunger : MonoBehaviour {
         if(HungerAmount < minHunger) //this if statement makes sure the hunger doesnt go over max or min hunger (DEFAULT: 100, 0)
         {
             //Sets hunger to 0 and makes the player lose health via Health script
-            print("starving");
             gameMechHealth.DeductCurrentHealth(amountHealthLossWhenStarving);
             HungerAmount = minHunger;
             

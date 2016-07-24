@@ -10,12 +10,14 @@ public class GameManager_DisableHUD : MonoBehaviour {
 	void OnEnable() 
 	{
 		SetInitialReferences();
-        gameManagerMaster.EventPlayerDie += DisableHud;
+        gameManagerMaster.EventPlayerDie += ToggleHud;
+        gameManagerMaster.EventTogglePause += ToggleHud;
 	}
 
 	void OnDisable() 
 	{
-        gameManagerMaster.EventPlayerDie -= DisableHud;
+        gameManagerMaster.EventPlayerDie -= ToggleHud;
+        gameManagerMaster.EventTogglePause -= ToggleHud;
     }
 
 	void SetInitialReferences() 
@@ -23,8 +25,8 @@ public class GameManager_DisableHUD : MonoBehaviour {
         gameManagerMaster = GetComponent<GameManager_Master>();
 	}
 
-    void DisableHud()
+    void ToggleHud()
     {
-        HUD.SetActive(false);
+        HUD.SetActive(!HUD.activeSelf);
     }
 }
