@@ -85,13 +85,16 @@ public class SaveLoadTreePositions : MonoBehaviour {
             {
                 trees[i].transform.position = new Vector3(saveAbleTreePostionCollection[i].myPosX, saveAbleTreePostionCollection[i].myPosY, saveAbleTreePostionCollection[i].myPosZ);
                 trees[i].transform.rotation = new Quaternion(saveAbleTreePostionCollection[i].myQuaternionX, saveAbleTreePostionCollection[i].myQuaternionY, saveAbleTreePostionCollection[i].myQuaternionZ, saveAbleTreePostionCollection[i].myQuaternionW);
+                Debug.Log(trees[i].transform.name);
                 if(saveAbleTreePostionCollection[i].destroyed)
                 {
                     Debug.Log(trees[i].transform.name + " has been destroyed, not loading");
                     trees[i].GetComponent<TreesPosition>().destroyed = true;
                     trees[i].transform.Translate(new Vector3(0, -10000, 0)); //REALLY bad for performance but will do for now :p
-                    trees[i].GetComponent<CapsuleCollider>().enabled = false;
-                    trees[i].GetComponent<MeshRenderer>().enabled = false;
+                    Destroy(trees[i].GetComponent<CapsuleCollider>());
+                    Destroy(trees[i].GetComponent<MeshRenderer>());
+                    Destroy(trees[i].GetComponent<MeshFilter>());
+                    Destroy(trees[i].GetComponent<Rigidbody>());
                 }
             }
             file.Close();

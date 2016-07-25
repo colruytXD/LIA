@@ -27,12 +27,10 @@ public class GameManager_ToggleTimeScale : MonoBehaviour {
         if(Time.timeScale == 0)
         {
             Time.timeScale = 1;
-            print("1");
         }
         else
         {
             Time.timeScale = 0;
-            print("0");
         }
     }
 }
