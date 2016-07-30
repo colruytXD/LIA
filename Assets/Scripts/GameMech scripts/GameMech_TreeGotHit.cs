@@ -50,8 +50,8 @@ public class GameMech_TreeGotHit : MonoBehaviour {
         {
             gameObject.AddComponent<Rigidbody>();
             Rigidbody rb = GetComponent<Rigidbody>();
-            rb.mass = 100;
-            rb.AddForceAtPosition(hitter.transform.forward * 300, transform.position, ForceMode.Impulse);
+            rb.mass = 1000;
+            rb.AddForceAtPosition(hitter.transform.forward * 2000, transform.position, ForceMode.Impulse);
         } 
     }
 }

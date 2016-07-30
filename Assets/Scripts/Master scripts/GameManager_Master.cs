@@ -16,6 +16,7 @@ public class GameManager_Master : MonoBehaviour {
     public event GeneralEventHandler EventPlayerDie;
     public event GeneralEventHandler EventTogglePause;
     public event GeneralEventHandler EventSaveGame;
+    public event GeneralEventHandler EventDeleteSave;
 
     public void CallEventGoToMainMenu()
     {
@@ -87,6 +88,14 @@ public class GameManager_Master : MonoBehaviour {
         if(EventSaveGame != null)
         {
             EventSaveGame();
+        }
+    }
+
+    public void CallEventDeleteSave()
+    {
+        if(EventDeleteSave != null)
+        {
+            EventDeleteSave();
         }
     }
 }

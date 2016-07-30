@@ -4,35 +4,36 @@ using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public class SaveLoadTreePositions : MonoBehaviour {
+public class SaveLoadTreePositions : MonoBehaviour
+{
 
     private GameManager_Master gameManagerMaster;
     public GameObject[] trees;
 
-	void OnEnable() 
-	{
-		SetInitialReferences();
+    void OnEnable()
+    {
+        SetInitialReferences();
         gameManagerMaster.EventSaveGame += Save;
         Load();
-	}
-
-	void OnDisable() 
-	{
-        gameManagerMaster.EventSaveGame += Save;
     }
 
-	void SetInitialReferences() 
-	{
+    void OnDisable()
+    {
+        gameManagerMaster.EventSaveGame -= Save;
+    }
+
+    void SetInitialReferences()
+    {
         gameManagerMaster = GetComponent<GameManager_Master>();
-	}
+    }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             Save();
         }
-        else if(Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.E))
         {
             Load();
         }
@@ -49,7 +50,7 @@ public class SaveLoadTreePositions : MonoBehaviour {
 
         for (int i = 0; i < trees.Length; i++)
         {
-            if(trees[i] != null)
+            if (trees[i] != null)
             {
                 SaveAble_TreePositions saveAbleTreePositionsData = new SaveAble_TreePositions(); //Creates new instance of saveAble_TreePositions
                 saveAbleTreePositionsData.myPosX = trees[i].GetComponent<TreesPosition>().MyPosX();     //Gets current X Vector of the tree of certain tree
@@ -81,12 +82,12 @@ public class SaveLoadTreePositions : MonoBehaviour {
             List<SaveAble_TreePositions> saveAbleTreePostionCollection = new List<SaveAble_TreePositions>();
             saveAbleTreePostionCollection = (List<SaveAble_TreePositions>)binaryFormatter.Deserialize(file);
 
-            for(int i = 0; i < trees.Length; i++)
+            for (int i = 0; i < trees.Length; i++)
             {
                 trees[i].transform.position = new Vector3(saveAbleTreePostionCollection[i].myPosX, saveAbleTreePostionCollection[i].myPosY, saveAbleTreePostionCollection[i].myPosZ);
                 trees[i].transform.rotation = new Quaternion(saveAbleTreePostionCollection[i].myQuaternionX, saveAbleTreePostionCollection[i].myQuaternionY, saveAbleTreePostionCollection[i].myQuaternionZ, saveAbleTreePostionCollection[i].myQuaternionW);
                 Debug.Log(trees[i].transform.name);
-                if(saveAbleTreePostionCollection[i].destroyed)
+                if (saveAbleTreePostionCollection[i].destroyed)
                 {
                     Debug.Log(trees[i].transform.name + " has been destroyed, not loading");
                     trees[i].GetComponent<TreesPosition>().destroyed = true;
@@ -104,18 +105,20 @@ public class SaveLoadTreePositions : MonoBehaviour {
             Debug.LogError("No SaveFile exists");
         }
     }
-}
 
-[System.Serializable]
-class SaveAble_TreePositions {
-    public float myPosX;
-    public float myPosY;
-    public float myPosZ;
 
-    public float myQuaternionX;
-    public float myQuaternionY;
-    public float myQuaternionZ;
-    public float myQuaternionW;
+    [System.Serializable]
+    class SaveAble_TreePositions
+    {
+        public float myPosX;
+        public float myPosY;
+        public float myPosZ;
 
-    public bool destroyed;
+        public float myQuaternionX;
+        public float myQuaternionY;
+        public float myQuaternionZ;
+        public float myQuaternionW;
+
+        public bool destroyed;
+    }
 }
