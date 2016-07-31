@@ -31,9 +31,9 @@ public class GameManager_DeleteSaveFile : MonoBehaviour {
         Debug.Log("Deleting saves");
         for(int i = 0; i < DeletableDataPaths.Length; i++)
         {
-            if(File.Exists(Application.persistentDataPath + DeletableDataPaths[i].ToString()))
+            if(File.Exists(Application.persistentDataPath + "/WorldSaves" +DeletableDataPaths[i].ToString()))
             {
-                File.Delete(Application.persistentDataPath + DeletableDataPaths[i].ToString());
+                File.Delete(Application.persistentDataPath + "/WorldSaves" +DeletableDataPaths[i].ToString());
             }
         }
     }
