@@ -20,11 +20,6 @@ public class GameMech_TreeGotHit : MonoBehaviour {
 	{
 
 	}
-	
-	void Update () 
-	{
-	
-	}
 
 	void SetInitialReferences() 
 	{
@@ -40,18 +35,8 @@ public class GameMech_TreeGotHit : MonoBehaviour {
 
         if (currentHealth < minHealth)
         {
-            TreeChoppedDown(hitter);
+            GetComponent<GameMech_TreeGotCutDown>().TreeChoppedDown(hitter);
+            GetComponent<GameMech_TreeChopInPieces>().TakeDamage(amount);
         }
-    }
-
-    void TreeChoppedDown(Transform hitter)
-    {
-        if(gameObject.GetComponent<Rigidbody>() == null)
-        {
-            gameObject.AddComponent<Rigidbody>();
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.mass = 1000;
-            rb.AddForceAtPosition(hitter.transform.forward * 3000, transform.position + new Vector3(transform.position.x, 5, transform.position.z), ForceMode.Impulse);
-        } 
     }
 }
