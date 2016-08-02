@@ -91,11 +91,23 @@ public class SaveLoadTreePositions : MonoBehaviour
                 {
                     Debug.Log(trees[i].transform.name + " has been destroyed, not loading");
                     trees[i].GetComponent<TreesPosition>().destroyed = true;
-                    trees[i].transform.Translate(new Vector3(0, -10000, 0)); //REALLY bad for performance but will do for now :p
-                    Destroy(trees[i].GetComponent<CapsuleCollider>());
-                    Destroy(trees[i].GetComponent<MeshRenderer>());
-                    Destroy(trees[i].GetComponent<MeshFilter>());
-                    Destroy(trees[i].GetComponent<Rigidbody>());
+
+                    Component[] components = trees[i].GetComponents(typeof(Component));
+                    for (int x = 0; x < components.Length; x++)
+                    {
+                        print(components[x]);
+                    }
+
+                    foreach(Component comp in components)
+                    {
+                        print(comp);
+                        if(comp != trees[i].GetComponent<Transform>() && comp != trees[i].GetComponent<TreesPosition>())
+                        {
+                            Destroy(comp);
+                        }
+                    }
+
+
                 }
             }
             file.Close();

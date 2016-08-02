@@ -3,40 +3,46 @@ using System.Collections;
 
 public class GameMech_TreeGotHit : MonoBehaviour {
 
+    private Tree_Master treeMaster;
+    public float currentHealth = 100;
     [SerializeField]
-    private float currentHealth;
+    private float minHealth = 0;
     [SerializeField]
-    private float maxHealth;
-    [SerializeField]
-    private float minHealth;
+    private float maxHealth = 100;
 
-    void OnEnable() 
+	void OnEnable() 
 	{
 		SetInitialReferences();
-        currentHealth = maxHealth;
+        treeMaster.EventTreeHit += TreeGotHit;
 	}
 
 	void OnDisable() 
 	{
-
+        treeMaster.EventTreeHit -= TreeGotHit;
 	}
 
 	void SetInitialReferences() 
 	{
-
+        treeMaster = GetComponent<Tree_Master>();
 	}
 
-    public void TakeDamage(float amount, Transform hitter)
+    void TreeGotHit(float amount, Transform transform)
     {
+        
         if (currentHealth > minHealth - 1)
         {
             currentHealth -= amount;
         }
-
-        if (currentHealth < minHealth)
+        else if (treeMaster.isCutDown == false)
         {
-            GetComponent<GameMech_TreeGotCutDown>().TreeChoppedDown(hitter);
-            GetComponent<GameMech_TreeChopInPieces>().TakeDamage(amount);
+            treeMaster.CallEventGotChoppedDown(transform);
+            treeMaster.isCutDown = true;
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            print("else");
+            treeMaster.CallEventDestroyTree(transform);
         }
     }
 }

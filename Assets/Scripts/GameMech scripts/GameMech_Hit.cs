@@ -7,7 +7,7 @@ public class GameMech_Hit : MonoBehaviour {
     [SerializeField]
     private float maxHitDistance;
 
-    public float HitDamage;
+    public float currentHitDamage = 20;
 
 	void OnEnable() 
 	{
@@ -36,6 +36,7 @@ public class GameMech_Hit : MonoBehaviour {
             if(Physics.Raycast(transform.position, transform.forward, out hit, maxHitDistance))
             {
                 Hit(hit);
+                print(hit.transform.name);
             }
         }
     }
@@ -44,7 +45,7 @@ public class GameMech_Hit : MonoBehaviour {
     {
         if(hit.transform.CompareTag("Tree"))
         {
-            hit.transform.GetComponent<GameMech_TreeGotHit>().TakeDamage(HitDamage, transform);
+            hit.transform.GetComponent<Tree_Master>().CallEventTreeHit(currentHitDamage, transform);
         }
     }
 }
