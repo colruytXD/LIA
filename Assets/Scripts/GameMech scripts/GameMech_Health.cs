@@ -48,5 +48,6 @@ public class GameMech_Health : MonoBehaviour {
         {
             CurrentHealth = maxHealth;
         }
+
     }
 }

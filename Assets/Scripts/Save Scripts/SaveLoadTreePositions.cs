@@ -27,18 +27,6 @@ public class SaveLoadTreePositions : MonoBehaviour
         gameManagerMaster = GetComponent<GameManager_Master>();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Save();
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            Load();
-        }
-    }
-
     void Save()
     {
         Debug.Log("Saving TreePositions");

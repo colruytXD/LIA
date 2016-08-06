@@ -47,5 +47,10 @@ public class GameMech_Hit : MonoBehaviour {
         {
             hit.transform.GetComponent<Tree_Master>().CallEventTreeHit(currentHitDamage, transform);
         }
+        else if(hit.transform.CompareTag("Tree"))
+        {
+            hit.transform.GetComponent<BerryBush_Master>().CallEventBushHit();
+        }
+        
     }
 }

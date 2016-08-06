@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameMech_Hunger : MonoBehaviour {
 
     private GameMech_Health gameMechHealth;
+    private GameMech_HealthRegen healthRegen;
 
     [SerializeField]
     private Image imgHungerBar;
@@ -33,6 +34,7 @@ public class GameMech_Hunger : MonoBehaviour {
 	void SetInitialReferences() 
 	{
         gameMechHealth = GetComponent<GameMech_Health>();
+        healthRegen = GetComponent<GameMech_HealthRegen>();
 	}
 
     void DecreaseHunger(float amount) //Decreases hunger by certain amount
@@ -46,8 +48,8 @@ public class GameMech_Hunger : MonoBehaviour {
             //Sets hunger to 0 and makes the player lose health via Health script
             gameMechHealth.DeductCurrentHealth(amountHealthLossWhenStarving);
             HungerAmount = minHunger;
-            
         }
+        healthRegen.CheckIfRegenIsPossible();
     }
 
     void IncreaseHunger(float amount)
@@ -60,6 +62,7 @@ public class GameMech_Hunger : MonoBehaviour {
         {
             HungerAmount = maxHunger;
         }
+        healthRegen.CheckIfRegenIsPossible();
     }
 
     IEnumerator HungerDecrease() //Runs forever with some time between => calls decreaseHunger function

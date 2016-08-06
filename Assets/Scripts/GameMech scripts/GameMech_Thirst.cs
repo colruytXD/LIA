@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameMech_Thirst : MonoBehaviour {
 
     private GameMech_Health gameMechHealth;
+    private GameMech_HealthRegen healthRegen;
 
     [SerializeField]
     private Image imgThirstBar;
@@ -37,6 +38,7 @@ public class GameMech_Thirst : MonoBehaviour {
     void SetInitialReferences()
     {
         gameMechHealth = GetComponent<GameMech_Health>();
+        healthRegen = GetComponent<GameMech_HealthRegen>();
     }
 
     void DecreaseHunger(float amount) //Decreases thirst by certain amount
@@ -53,6 +55,7 @@ public class GameMech_Thirst : MonoBehaviour {
             thirstAmount = minThirst;
 
         }
+        healthRegen.CheckIfRegenIsPossible();
     }
 
     public void IncreaseThirst(float amount)
@@ -65,6 +68,7 @@ public class GameMech_Thirst : MonoBehaviour {
         {
             thirstAmount = maxThirst;
         }
+        healthRegen.CheckIfRegenIsPossible();
     }
 
     IEnumerator ThirstDecrease() //Runs forever with some time between => calls decreaseThirst function
