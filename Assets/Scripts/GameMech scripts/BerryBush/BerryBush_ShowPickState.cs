@@ -14,6 +14,14 @@ public class BerryBush_ShowPickState : MonoBehaviour {
         berryBushMaster.EventRegenerateBush += ShowBerries;
 	}
 
+    void Start()
+    {
+        if(berryBushMaster.isPicked)
+        {
+            HideBerries();
+        }
+    }
+
 	void OnDisable() 
 	{
         berryBushMaster.EventBushHit -= HideBerries;

@@ -74,21 +74,15 @@ public class SaveLoadTreePositions : MonoBehaviour
             {
                 trees[i].transform.position = new Vector3(saveAbleTreePostionCollection[i].myPosX, saveAbleTreePostionCollection[i].myPosY, saveAbleTreePostionCollection[i].myPosZ);
                 trees[i].transform.rotation = new Quaternion(saveAbleTreePostionCollection[i].myQuaternionX, saveAbleTreePostionCollection[i].myQuaternionY, saveAbleTreePostionCollection[i].myQuaternionZ, saveAbleTreePostionCollection[i].myQuaternionW);
-                Debug.Log(trees[i].transform.name);
                 if (saveAbleTreePostionCollection[i].destroyed)
                 {
                     Debug.Log(trees[i].transform.name + " has been destroyed, not loading");
                     trees[i].GetComponent<TreesPosition>().destroyed = true;
 
                     Component[] components = trees[i].GetComponents(typeof(Component));
-                    for (int x = 0; x < components.Length; x++)
-                    {
-                        print(components[x]);
-                    }
 
                     foreach(Component comp in components)
-                    {
-                        print(comp);
+                    { 
                         if(comp != trees[i].GetComponent<Transform>() && comp != trees[i].GetComponent<TreesPosition>())
                         {
                             Destroy(comp);
