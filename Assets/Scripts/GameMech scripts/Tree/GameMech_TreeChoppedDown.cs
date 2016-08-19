@@ -26,6 +26,6 @@ public class GameMech_TreeChoppedDown : MonoBehaviour {
         gameObject.AddComponent<Rigidbody>();
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.mass = 1000;
-        rb.AddForceAtPosition(-HitTransform.transform.forward * 500, transform.position + new Vector3(transform.position.x, 5, transform.position.z), ForceMode.Impulse);
+        rb.AddForceAtPosition(-HitTransform.transform.forward, transform.position /*+ new Vector3(transform.position.x, 5, transform.position.z)*/ * 500, ForceMode.Impulse);
     }
 }
