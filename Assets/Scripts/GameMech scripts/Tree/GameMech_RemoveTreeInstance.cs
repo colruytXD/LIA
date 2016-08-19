@@ -24,7 +24,6 @@ public class GameMech_RemoveTreeInstance : MonoBehaviour {
 
     void DestroyTree(Transform transform)
     {
-        print("call");
         GetComponent<TreesPosition>().destroyed = true;
         Component[] comp = gameObject.GetComponents(typeof(Component));
 

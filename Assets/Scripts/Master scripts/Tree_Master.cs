@@ -16,7 +16,6 @@ public class Tree_Master : MonoBehaviour {
 
     public void CallEventTreeHit(float amount, Transform transform)
     {
-        print("amt" + amount);
         if (EventTreeHit != null)
         {
             EventTreeHit(amount, transform);
