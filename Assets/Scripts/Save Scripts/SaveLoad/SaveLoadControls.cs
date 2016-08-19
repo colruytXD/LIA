@@ -7,9 +7,19 @@ using UnityEngine.UI;
 
 public class SaveLoadControls : MonoBehaviour {
 
-    public InputField[] inpControls;
+    public InputField moveForward;
+    public InputField moveBackward;
+    public InputField moveLeft;
+    public InputField moveRight;
+    public InputField interact;
 
-	void OnEnable() 
+    public string moveForwardStr;
+    public string moveBackwardStr;
+    public string moveLeftStr;
+    public string moveRightStr;
+    public string interactStr;
+
+    void OnEnable() 
 	{
         Load();
 	}
@@ -24,15 +34,15 @@ public class SaveLoadControls : MonoBehaviour {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/Controls.dat");
 
-        List<SaveAble_Controls> saveAbleControlsCollection = new List<SaveAble_Controls>();
+        SaveAble_Controls saveAbleControls = new SaveAble_Controls();
 
-        for(int i = 0; i< inpControls.Length; i++)
-        {
-            SaveAble_Controls saveAbleControlsData = new SaveAble_Controls();
-            saveAbleControlsData.Control = inpControls[i].GetComponent<Controls>().chosenControl();
-            saveAbleControlsCollection.Add(saveAbleControlsData);
-        }
-        binaryFormatter.Serialize(file, saveAbleControlsCollection);
+        saveAbleControls.moveForward = moveForward.text;
+        saveAbleControls.moveBackward = moveBackward.text;
+        saveAbleControls.moveLeft = moveLeft.text;
+        saveAbleControls.moveRight = moveRight.text;
+        saveAbleControls.interact = interact.text;
+
+        binaryFormatter.Serialize(file, saveAbleControls);
         file.Close();
     }
 
@@ -44,12 +54,14 @@ public class SaveLoadControls : MonoBehaviour {
             FileStream file = File.Open(Application.persistentDataPath + "/Controls.dat", FileMode.Open);
             file.Seek(0, SeekOrigin.Begin);
 
-            List<SaveAble_Controls> saveAbleControlsCollection = new List<SaveAble_Controls>();
-            saveAbleControlsCollection = (List<SaveAble_Controls>)binaryFormatter.Deserialize(file);
-
-            for(int i = 0; i < inpControls.Length; i++)
+            SaveAble_Controls saveAbleControls = new SaveAble_Controls();
+            if(saveAbleControls.moveForward != null)
             {
-                inpControls[i].text = saveAbleControlsCollection[i].Control;
+                moveForwardStr = saveAbleControls.moveForward;
+                moveBackwardStr = saveAbleControls.moveBackward;
+                moveLeftStr = saveAbleControls.moveLeft;
+                moveRightStr = saveAbleControls.moveRight;
+                interactStr = saveAbleControls.interact;
             }
             file.Close();
         }
@@ -63,5 +75,13 @@ public class SaveLoadControls : MonoBehaviour {
 [System.Serializable]
 class SaveAble_Controls
 {
-    public string Control;
+    //Movement
+    public string moveForward;
+    public string moveBackward;
+    public string moveLeft;
+    public string moveRight;
+    public string crouch;
+
+    //Other
+    public string interact;
 }
