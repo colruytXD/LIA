@@ -55,7 +55,6 @@ public class Campfire_LightEffect : MonoBehaviour {
 
     void ChangeIntensity()
     {
-        print(Time.time);
         _nextIntensityAmount = (_nextIntensityAmount + Random.Range(minIntensity, maxIntensity)) / 2;
         fire.intensity = _nextIntensityAmount;
     }

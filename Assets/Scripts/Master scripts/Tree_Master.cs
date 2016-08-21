@@ -3,6 +3,26 @@ using System.Collections;
 
 public class Tree_Master : MonoBehaviour {
 
+    private Hittable_Master hittableMaster;
+
+    void OnEnable()
+    {
+        SetInitialReferences();
+        hittableMaster.EventTransformGotHit += CallEventTreeHit;
+    }
+
+    void OnDisable()
+    {
+        hittableMaster.EventTransformGotHit -= CallEventTreeHit;
+    }
+
+    void SetInitialReferences()
+    {
+        hittableMaster = GetComponent<Hittable_Master>();
+    }
+
+    //--------------------------------------------------------------
+
     public bool isCutDown;
 
     public delegate void TreeEventHandler(Transform hitTransform);
