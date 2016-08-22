@@ -4,6 +4,8 @@ using System.Collections;
 public class GameMech_RemoveTreeInstance : MonoBehaviour {
 
     private Tree_Master treeMaster;
+    [SerializeField]
+    private GameObject[] toDestroyGO;
 
 	void OnEnable() 
 	{
@@ -34,5 +36,10 @@ public class GameMech_RemoveTreeInstance : MonoBehaviour {
                 Destroy(comp[i]);
             }
          }
+
+        for(int i = 0; i < toDestroyGO.Length; i++)
+        {
+            Destroy(toDestroyGO[i]);
+        }
     }
 }
