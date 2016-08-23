@@ -56,7 +56,7 @@ public class GameMech_Hunger : MonoBehaviour {
         healthRegen.CheckIfRegenIsPossible();
     }
 
-    void IncreaseHunger(float amount)
+    public void IncreaseHunger(float amount)
     {
         HungerAmount += amount;
 

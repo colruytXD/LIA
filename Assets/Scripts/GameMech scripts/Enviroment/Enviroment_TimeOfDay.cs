@@ -39,8 +39,6 @@ public class Enviroment_TimeOfDay : MonoBehaviour {
         }
 
         currentTime = Time.time - lengthOfDay * amountOfDaysPassed;
-
-        print(currentTime);
     }
 
     void ChangeSkybox()
